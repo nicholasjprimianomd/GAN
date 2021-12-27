@@ -206,8 +206,8 @@ def build_dc_generator(z_dim=100, verbose=True):
     """
     model = Sequential()
     model.add(Input(shape=(z_dim,)))
-    model.add(Dense(128 * 64 * 64, activation="relu", input_dim=z_dim))
-    model.add(Reshape((64, 64, 128)))
+    model.add(Dense(128 * 32 * 32, activation="relu", input_dim=z_dim))
+    model.add(Reshape((32, 32, 128)))
     model.add(UpSampling2D())
     model.add(Conv2D(128, kernel_size=3, padding="same"))
     model.add(BatchNormalization(momentum=0.8))
@@ -267,7 +267,7 @@ def build_conditional_generator(z_dim=100, output_shape=(128, 128, 1),
 
 def sample_images(epoch, generator, z_dim=100,
                   save_output=True,
-                  output_dir="images"):
+                  output_dir="GAN_images"):
     """
     Utility method to sample and plot random 25 generator samples
     in a 5x5 grid and save
